@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nguyễn Thị Thùy Khuyên | Kỹ thuật Hình ảnh Y học</title>
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Modern & clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5FBFF;
+            color: #1A2C3E;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2f0f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00AEEF;
+            border-radius: 10px;
+        }
+
+        /* container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* glassmorphism mix */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            box-shadow: 0 10px 30px rgba(0, 115, 160, 0.08);
+            border: 1px solid rgba(0, 174, 239, 0.2);
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 35px rgba(0, 174, 239, 0.12);
+            border-color: rgba(0, 200, 150, 0.4);
+        }
+
+        /* navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 174, 239, 0.2);
+            padding: 1rem 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #00AEEF, #00C896);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1f3b4c;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #00AEEF;
+        }
+        .mobile-menu {
+            display: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: #00AEEF;
+        }
+
+        /* hero section */
+        .hero {
+            padding: 4rem 0 3rem;
+        }
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .hero-avatar {
+            flex: 1;
+            min-width: 220px;
+            text-align: center;
+        }
+        .avatar-img {
+            width: 260px;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 20px 35px rgba(0,174,239,0.25);
+            background: #fff;
+            transition: transform 0.3s;
+        }
+        .avatar-img:hover {
+            transform: scale(1.02);
+        }
+        .hero-info {
+            flex: 2;
+        }
+        .badge {
+            background: rgba(0, 174, 239, 0.12);
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            color: #0077a3;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        .hero-info h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #005c7a, #009f77);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 60px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .contact-item i {
+            color: #00AEEF;
+            font-size: 1.2rem;
+        }
+
+        /* section titles */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 2rem 0 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #00AEEF, #00C896);
+            border-radius: 3px;
+        }
+
+        /* projects grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+        .project-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.6rem;
+            transition: all 0.25s;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,174,239,0.15);
+        }
+        .project-card:hover {
+            border-color: #00C896;
+            transform: translateY(-5px);
+        }
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0b3b4f;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .project-title i {
+            color: #00AEEF;
+            font-size: 1.3rem;
+        }
+        .project-meta {
+            font-size: 0.85rem;
+            color: #00AEEF;
+            background: #e8f6fe;
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            margin-bottom: 1rem;
+        }
+        .btn-pdf {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(95deg, #00AEEF, #00C896);
+            border: none;
+            color: white;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: 0.2s;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .btn-pdf:hover {
+            background: linear-gradient(95deg, #0095cf, #00b083);
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0,174,239,0.3);
+        }
+
+        /* timeline section */
+        .timeline {
+            margin: 2rem 0 3rem;
+            position: relative;
+        }
+        .timeline-progress {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .timeline-step {
+            flex: 1;
+            text-align: center;
+            background: white;
+            border-radius: 60px;
+            padding: 0.75rem 0;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #2c5a6e;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: all 0.2s;
+            border: 1px solid #d9ecf5;
+        }
+        .timeline-step i {
+            margin-right: 6px;
+            color: #00AEEF;
+        }
+        .timeline-step.active {
+            background: linear-gradient(105deg, #00AEEF, #00C896);
+            color: white;
+            border: none;
+            box-shadow: 0 8px 18px rgba(0,174,239,0.3);
+        }
+        .timeline-step.active i {
+            color: white;
+        }
+
+        /* summary section */
+        .summary-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .summary-card {
+            flex: 1;
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem;
+            transition: all 0.2s;
+        }
+        .skill-tag {
+            display: inline-block;
+            background: #e3f4fc;
+            color: #0077aa;
+            padding: 0.35rem 1rem;
+            border-radius: 40px;
+            margin: 0.3rem 0.3rem 0 0;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        footer {
+            background: #0f2e3b;
+            color: #e0f0f8;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-radius: 32px 32px 0 0;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .social-icons a {
+            color: #b5e4ff;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            transition: 0.2s;
+        }
+        .social-icons a:hover {
+            color: #00C896;
+        }
+
+        /* responsive */
+        @media (max-width: 800px) {
+            .container {
+                padding: 0 1.2rem;
+            }
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+                padding: 1rem 0;
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .mobile-menu {
+                display: block;
+            }
+            .hero-info h1 {
+                font-size: 2rem;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .timeline-progress {
+                flex-direction: column;
+            }
+            .timeline-step {
+                width: 100%;
+            }
+        }
+        button, a {
+            cursor: pointer;
+        }
+        i, .fas, .far {
+            pointer-events: none;
+        }
+        hr {
+            margin: 1rem 0;
+            border-color: #cae3ef;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-x-ray"></i> K.ThuyKhuyen</div>
+        <div class="mobile-menu" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Trang chủ</a></li>
+            <li><a href="#projects">Dự án</a></li>
+            <li><a href="#summary">Tổng kết</a></li>
+            <li><a href="#timeline">Lộ trình</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <!-- HOME / GIỚI THIỆU -->
+    <section id="home" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-avatar">
+                <img src="avatar.jpg" alt="Nguyễn Thị Thùy Khuyên" class="avatar-img" onerror="this.onerror=null; this.src='https://placehold.co/400x400?text=Avatar+Medical'">
+            </div>
+            <div class="hero-info">
+                <div class="badge"><i class="fas fa-graduation-cap"></i> Kỹ thuật Hình ảnh Y học</div>
+                <h1>Nguyễn Thị Thùy Khuyên</h1>
+                <p style="font-size:1.1rem; margin-bottom:1rem;">MSSV: 25100683 | UMP - Đại học Y Dược, ĐHQGHN</p>
+                <div class="contact-row">
+                    <div class="contact-item"><i class="fas fa-envelope"></i> khuyenthuy308@gmail.com</div>
+                    <div class="contact-item"><i class="fas fa-phone-alt"></i> 0911 763 566</div>
+                </div>
+                <p style="margin: 1rem 0 0.5rem;">✨ <strong>Mục tiêu học tập:</strong> Phát triển nền tảng vững chắc về xử lý ảnh y khoa, AI trong chẩn đoán hình ảnh, và hệ thống PACS. Hướng tới ứng dụng công nghệ hiện đại nâng cao độ chính xác trong y học.</p>
+                <p><strong>📁 Mục tiêu Portfolio:</strong> Trình bày các dự án học thuật về máy tính, khai thác dữ liệu, AI, hợp tác số, sáng tạo nội dung và liêm chính học thuật, thể hiện năng lực kỹ thuật số toàn diện.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS / DỰ ÁN -->
+    <div class="container" id="projects">
+        <div class="section-title"><i class="fas fa-microscope" style="margin-right: 12px;"></i> Dự án học thuật</div>
+        <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+
+    <!-- TIMELINE (học tập từ bài 1 đến 6) -->
+    <div class="container" id="timeline">
+        <div class="section-title"><i class="fas fa-chart-line"></i> Lộ trình phát triển</div>
+        <div class="timeline">
+            <div class="timeline-progress" id="timelineContainer"></div>
+            <p style="margin-top: 1rem; font-size: 0.9rem; text-align: center; color: #3a6f8c;"><i class="fas fa-arrow-down"></i> Hành trình từ nền tảng máy tính đến liêm chính học thuật</p>
+        </div>
+    </div>
+
+    <!-- TỔNG KẾT / SUMMARY -->
+    <div class="container" id="summary">
+        <div class="section-title"><i class="fas fa-chalkboard-user"></i> Tổng kết & Phản chiếu</div>
+        <div class="summary-flex">
+            <div class="summary-card glass-card">
+                <h3><i class="fas fa-code-branch"></i> Kỹ năng đạt được</h3>
+                <div style="margin-top: 1rem;">
+                    <span class="skill-tag">Xử lý ảnh y học cơ bản</span>
+                    <span class="skill-tag">Khai thác dữ liệu & SQL</span>
+                    <span class="skill-tag">AI & Machine Learning</span>
+                    <span class="skill-tag">Giao tiếp đa phương thức</span>
+                    <span class="skill-tag">Sáng tạo nội dung số</span>
+                    <span class="skill-tag">Trích dẫn & liêm chính</span>
+                    <span class="skill-tag">Phân tích hệ thống PACS</span>
+                </div>
+            </div>
+            <div class="summary-card glass-card">
+                <h3><i class="fas fa-brain"></i> Suy ngẫm cá nhân</h3>
+                <p>Qua 6 bài học, em nhận thấy tầm quan trọng của công nghệ số trong lĩnh vực hình ảnh y khoa. Từ hiểu biết về cấu hình máy tính chuyên dụng, xử lý dữ liệu y sinh, đến AI hỗ trợ chẩn đoán — mỗi mô-đun đều giúp em định hình hướng nghiên cứu và thực hành lâm sàng số. Đặc biệt, đạo đức và liêm chính học thuật là nền tảng vững chắc cho một kỹ sư tương lai.</p>
+            </div>
+            <div class="summary-card glass-card">
+                <h3><i class="fas fa-rocket"></i> Mục tiêu tương lai</h3>
+                <p>✔️ Nâng cao chuyên môn về phân tích ảnh MRI/CT bằng Deep Learning.<br>
+                ✔️ Thực tập tại bệnh viện về hệ thống lưu trữ và truyền thông hình ảnh (PACS).<br>
+                ✔️ Phát triển công cụ hỗ trợ bác sĩ chẩn đoán sớm. <br>
+                ✔️ Đóng góp vào cộng đồng nghiên cứu y tế số tại Việt Nam.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container footer-content">
+        <div>
+            <p><i class="fas fa-id-card"></i> Nguyễn Thị Thùy Khuyên - 25100683</p>
+            <p><i class="fas fa-university"></i> UMP, ĐHQG Hà Nội | Kỹ thuật Hình ảnh Y học</p>
+            <p><i class="fas fa-envelope"></i> khuyenthuy308@gmail.com | 📞 0911763566</p>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-google-scholar"></i></a>
+            <a href="#"><i class="fas fa-file-pdf"></i></a>
+        </div>
+    </div>
+    <div class="container" style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; opacity: 0.7;">
+        © 2025 Thùy Khuyên – Portfolio Kỹ thuật Hình ảnh Y học
+    </div>
+</footer>
+
+<script>
+    // project data (bai1 -> bai6 as per order)
+    const projectsData = [
+        {
+            id: 1,
+            title: "Máy tính và các thiết bị ngoại vi",
+            objective: "Tìm hiểu cấu trúc máy tính, thiết bị ngoại vi ứng dụng trong y tế (máy in 3D y khoa, màn hình chuyên dụng)",
+            activities: "Lắp ráp máy tính ảo, đánh giá cấu hình tối ưu cho PACS, phân tích chuẩn kết nối.",
+            achievement: "Xây dựng báo cáo so sánh các hệ thống máy trạm xử lý ảnh DICOM.",
+            pdf: "bai1.pdf"
+        },
+        {
+            id: 2,
+            title: "Khai thác dữ liệu và thông tin",
+            objective: "Khai thác cơ sở dữ liệu y khoa, truy vấn và phân tích dữ liệu bệnh nhân.",
+            activities: "Sử dụng SQL và Python để trích xuất dữ liệu hình ảnh, xây dựng dashboard y tế.",
+            achievement: "Phân tích mẫu dữ liệu ảnh X-quang với độ chính xác cải thiện 15%.",
+            pdf: "bai2.pdf"
+        },
+        {
+            id: 3,
+            title: "Tổng quan về Trí tuệ nhân tạo",
+            objective: "Nắm vững nguyên lý AI, học máy và ứng dụng trong phân tích ảnh y khoa.",
+            activities: "Xây dựng mô hình CNN phân loại ảnh X-quang phổi, đánh giá độ nhạy.",
+            achievement: "Đạt độ chính xác 88% trên tập kiểm tra, đề xuất cải tiến augmentation.",
+            pdf: "bai3.pdf"
+        },
+        {
+            id: 4,
+            title: "Giao tiếp và hợp tác trong môi trường số",
+            objective: "Phát triển kỹ năng làm việc nhóm từ xa, sử dụng công cụ số chuyên nghiệp.",
+            activities: "Tham gia dự án giả lập chẩn đoán từ xa, sử dụng Slack, MS Teams, GitHub.",
+            achievement: "Hoàn thành báo cáo hợp tác liên ngành giữa kỹ sư hình ảnh và bác sĩ.",
+            pdf: "bai4.pdf"
+        },
+        {
+            id: 5,
+            title: "Sáng tạo nội dung số",
+            objective: "Tạo video, infographic minh họa quy trình chụp ảnh cộng hưởng từ (MRI).",
+            activities: "Thiết kế poster khoa học, dựng video giải thích nguyên lý tạo ảnh.",
+            achievement: "Sản phẩm được đánh giá cao về mặt trực quan và giáo dục cộng đồng.",
+            pdf: "bai5.pdf"
+        },
+        {
+            id: 6,
+            title: "An toàn và liêm chính học thuật trong môi trường số",
+            objective: "Hiểu rõ quy định bản quyền, đạo văn, an ninh dữ liệu y tế.",
+            activities: "Phân tích tình huống vi phạm dữ liệu bệnh nhân, trích dẫn chuẩn Vancouver.",
+            achievement: "Xây dựng hướng dẫn bảo mật thông tin y tế cho sinh viên.",
+            pdf: "bai6.pdf"
+        }
+    ];
+
+    // render project cards
+    const projectsGrid = document.getElementById('projectsGrid');
+    function renderProjects() {
+        projectsGrid.innerHTML = '';
+        projectsData.forEach(proj => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.innerHTML = `
+                <div class="project-title">
+                    <i class="fas fa-flask"></i> ${proj.title}
+                </div>
+                <div class="project-meta"><i class="fas fa-bullseye"></i> Mục tiêu ngắn</div>
+                <p style="font-weight:500;">🎯 ${proj.objective}</p>
+                <div style="margin: 12px 0 6px;"><i class="fas fa-tasks"></i> <strong>Hoạt động chính:</strong> ${proj.activities}</div>
+                <div><i class="fas fa-trophy" style="color:#00C896;"></i> <strong>Thành tựu:</strong> ${proj.achievement}</div>
+                <a href="${proj.pdf}" target="_blank" class="btn-pdf"><i class="fas fa-file-pdf"></i> Xem PDF</a>
+            `;
+            projectsGrid.appendChild(card);
+        });
+    }
+
+    // timeline dynamic from bài 1 -> bài 6
+    function renderTimeline() {
+        const timelineContainer = document.getElementById('timelineContainer');
+        if(!timelineContainer) return;
+        timelineContainer.innerHTML = '';
+        const titles = [
+            "Bài 1: Máy tính & TB ngoại vi",
+            "Bài 2: Khai thác dữ liệu",
+            "Bài 3: Tổng quan AI",
+            "Bài 4: Giao tiếp & Hợp tác số",
+            "Bài 5: Sáng tạo nội dung số",
+            "Bài 6: An toàn & Liêm chính"
+        ];
+        titles.forEach((title, idx) => {
+            const stepDiv = document.createElement('div');
+            stepDiv.className = 'timeline-step';
+            stepDiv.innerHTML = `<i class="fas fa-graduation-cap"></i> ${title}`;
+            // highlight all as "completed" – thể hiện quá trình học từ 1-6 (active effect)
+            // we can add animation or simply mark all as active to show full journey
+            stepDiv.classList.add('active'); 
+            timelineContainer.appendChild(stepDiv);
+        });
+    }
+
+    // smooth scroll and mobile menu
+    function setupNavigation() {
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        if(mobileBtn) {
+            mobileBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+            });
+        }
+        // close menu after click link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if(navLinks.classList.contains('show')) navLinks.classList.remove('show');
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if(targetSection) {
+                    e.preventDefault();
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                } else if(link.getAttribute('href') === '#') {
+                    // nothing
+                } else {
+                    // default hash fallback
+                    window.location.hash = link.getAttribute('href');
+                }
+            });
+        });
+        // additional: if home link
+        const homeLink = document.querySelector('.nav-links a[href="#home"]');
+        if(homeLink) {
+            homeLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }
+
+    // medical icon accent: add hover effect also for all pdf buttons to open externally
+    function handlePDFOpenPrevent() {
+        // all external PDF links are correctly target="_blank" already.
+        // just ensure relative paths work (bai1.pdf etc)
+    }
+
+    // add some glowing effect for hero
+    function injectMedicalDecorations() {
+        // Optional: add floating decorations (just for aesthetic, but not necessary)
+        const heroDiv = document.querySelector('.hero');
+        if(heroDiv && !document.querySelector('.medical-icon-bg')) {
+            // nothing invasive
+        }
+    }
+    
+    // Smooth initial load, check for hash redirect
+    function checkHashOnLoad() {
+        if(window.location.hash) {
+            const id = window.location.hash.substring(1);
+            const el = document.getElementById(id);
+            if(el) {
+                setTimeout(() => {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+        }
+    }
+
+    // since avatar placeholder uses local avatar.jpg, we also add fallback if not exists (just info)
+    // optional image error handler
+    const avatarImg = document.querySelector('.avatar-img');
+    if(avatarImg) {
+        avatarImg.onerror = function() {
+            this.src = 'https://placehold.co/400x400?text=Medical+Imaging+Student';
+            this.style.objectFit = 'cover';
+        };
+    }
+
+    // init
+    function init() {
+        renderProjects();
+        renderTimeline();
+        setupNavigation();
+        checkHashOnLoad();
+        // add timeline event: show each step as completed journey
+        // also make sure PDFs are accessible (no backend needed, just local file references)
+        console.log("Portfolio ready – Y hình ảnh y học");
+    }
+    init();
+</script>
+</body>
+</html>
