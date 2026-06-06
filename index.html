@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Nguyễn Thị Thùy Khuyên | Kỹ thuật Hình ảnh Y học</title>
-    <!-- Font Awesome 6 (free icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: Modern & clean typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <title>Nguyễn Thị Thùy Khuyên | Medical Imaging Engineering</title>
     <style>
+        /* ---------- RESET & BASE (Professional, Mature, Academic) ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -16,661 +13,704 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F5FBFF;
-            color: #1A2C3E;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #F8FAFC;
+            color: #1E2A3A;
             line-height: 1.5;
             scroll-behavior: smooth;
         }
 
-        /* custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #e2f0f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #00AEEF;
-            border-radius: 10px;
+        /* Professional color palette: Deep Navy, Medical Blue accents, cool gray */
+        :root {
+            --primary: #1A5F7A;      /* mature medical blue */
+            --primary-dark: #0E3E52;
+            --accent: #2C7A6E;       /* muted teal for subtle accents */
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-600: #475569;
+            --gray-800: #1E293B;
+            --white: #FFFFFF;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -1px rgb(0 0 0 / 0.03);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -2px rgb(0 0 0 / 0.02);
         }
 
-        /* container */
         .container {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 32px;
         }
 
-        /* glassmorphism mix */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border-radius: 32px;
-            box-shadow: 0 10px 30px rgba(0, 115, 160, 0.08);
-            border: 1px solid rgba(0, 174, 239, 0.2);
-            transition: transform 0.25s ease, box-shadow 0.3s ease;
-        }
-        .glass-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 35px rgba(0, 174, 239, 0.12);
-            border-color: rgba(0, 200, 150, 0.4);
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
         }
 
-        /* navigation */
-        nav {
+        h1 {
+            font-size: 2.75rem;
+            line-height: 1.2;
+            color: var(--gray-800);
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--gray-800);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigation - Clean & minimal */
+        .navbar {
             position: sticky;
             top: 0;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--gray-200);
             z-index: 100;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 174, 239, 0.2);
-            padding: 1rem 0;
         }
+
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            padding: 1rem 32px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
+
         .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            background: linear-gradient(135deg, #00AEEF, #00C896);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary);
+            letter-spacing: -0.3px;
         }
+
+        .logo span {
+            font-weight: 400;
+            color: var(--gray-600);
+        }
+
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
         }
+
         .nav-links a {
-            text-decoration: none;
+            font-size: 0.9rem;
             font-weight: 500;
-            color: #1f3b4c;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover {
-            color: #00AEEF;
-        }
-        .mobile-menu {
-            display: none;
-            font-size: 1.6rem;
-            cursor: pointer;
-            color: #00AEEF;
+            color: var(--gray-600);
+            transition: 0.2s;
         }
 
-        /* hero section */
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section - Mature & professional */
         .hero {
             padding: 4rem 0 3rem;
         }
+
         .hero-grid {
             display: flex;
-            align-items: center;
             gap: 3rem;
+            align-items: center;
+            justify-content: space-between;
             flex-wrap: wrap;
         }
-        .hero-avatar {
-            flex: 1;
-            min-width: 220px;
-            text-align: center;
-        }
-        .avatar-img {
-            width: 260px;
-            height: 260px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 20px 35px rgba(0,174,239,0.25);
-            background: #fff;
-            transition: transform 0.3s;
-        }
-        .avatar-img:hover {
-            transform: scale(1.02);
-        }
-        .hero-info {
+
+        .hero-content {
             flex: 2;
         }
-        .badge {
-            background: rgba(0, 174, 239, 0.12);
+
+        .hero-badge {
             display: inline-block;
-            padding: 0.25rem 1rem;
-            border-radius: 40px;
-            color: #0077a3;
-            font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--primary);
+            background: #E6F0F3;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
             margin-bottom: 1rem;
         }
-        .hero-info h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #005c7a, #009f77);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem;
+
+        .hero-content h1 {
+            margin-bottom: 0.75rem;
         }
+
+        .student-id {
+            font-size: 1rem;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .intro-text {
+            margin: 1.25rem 0 1.5rem;
+            color: var(--gray-600);
+            max-width: 90%;
+            line-height: 1.6;
+        }
+
         .contact-row {
             display: flex;
             flex-wrap: wrap;
             gap: 1.5rem;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
+            border-top: 1px solid var(--gray-200);
+            padding-top: 1.25rem;
         }
+
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            background: #fff;
-            padding: 0.5rem 1rem;
-            border-radius: 60px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-        }
-        .contact-item i {
-            color: #00AEEF;
-            font-size: 1.2rem;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--gray-600);
         }
 
-        /* section titles */
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 2rem 0 1.5rem;
-            position: relative;
-            display: inline-block;
-        }
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60%;
-            height: 3px;
-            background: linear-gradient(90deg, #00AEEF, #00C896);
-            border-radius: 3px;
+        .contact-item svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--primary);
+            stroke-width: 1.5;
+            fill: none;
         }
 
-        /* projects grid */
+        .goal-box {
+            background: var(--gray-100);
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            margin-top: 0.5rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        .goal-box p {
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+
+        .avatar-wrapper {
+            flex-shrink: 0;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--gray-100);
+            border: 3px solid var(--white);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Projects grid - Clean cards */
+        .projects-section {
+            padding: 2rem 0 3rem;
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 1.8rem;
-            margin: 2rem 0;
+            gap: 1.75rem;
+            margin-top: 1rem;
         }
+
         .project-card {
-            background: white;
-            border-radius: 28px;
-            padding: 1.6rem;
-            transition: all 0.25s;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.03);
-            border: 1px solid rgba(0,174,239,0.15);
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.25s ease;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
         }
+
         .project-card:hover {
-            border-color: #00C896;
-            transform: translateY(-5px);
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
         }
+
         .project-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #0b3b4f;
-            margin-bottom: 0.75rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-        .project-title i {
-            color: #00AEEF;
-            font-size: 1.3rem;
-        }
+
         .project-meta {
-            font-size: 0.85rem;
-            color: #00AEEF;
-            background: #e8f6fe;
-            display: inline-block;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-            margin-bottom: 1rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
         }
+
+        .project-desc {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin: 0.75rem 0;
+            line-height: 1.5;
+        }
+
+        .project-desc strong {
+            color: var(--gray-800);
+            font-weight: 600;
+        }
+
         .btn-pdf {
+            margin-top: 1rem;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: linear-gradient(95deg, #00AEEF, #00C896);
-            border: none;
-            color: white;
-            padding: 0.6rem 1.4rem;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 1rem;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--primary);
+            background: transparent;
+            border: 1px solid var(--gray-200);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
             transition: 0.2s;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        .btn-pdf:hover {
-            background: linear-gradient(95deg, #0095cf, #00b083);
-            transform: scale(1.02);
-            box-shadow: 0 8px 16px rgba(0,174,239,0.3);
+            cursor: pointer;
         }
 
-        /* timeline section */
-        .timeline {
-            margin: 2rem 0 3rem;
-            position: relative;
+        .btn-pdf:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
         }
-        .timeline-progress {
+
+        /* Timeline - Professional vertical progress */
+        .summary-section {
+            padding: 2rem 0 3rem;
+        }
+
+        .timeline {
+            margin: 2rem 0 2.5rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--gray-300);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.75rem;
+            padding-left: 1.8rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -1.2rem;
+            top: 0.2rem;
+            width: 12px;
+            height: 12px;
+            background: var(--white);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 1rem 1.2rem;
+            border-radius: 14px;
+            border: 1px solid var(--gray-200);
+            transition: 0.2s;
+        }
+
+        .timeline-content h4 {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-content p {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        /* Skills + reflection layout */
+        .insight-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .card-prof {
+            flex: 1;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 1.8rem;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.25rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin: 0.3rem 0.4rem 0 0;
+        }
+
+        .future-goals {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .future-goals ul {
+            margin-left: 1.2rem;
+            margin-top: 0.5rem;
+            color: var(--gray-600);
+            font-size: 0.85rem;
+        }
+
+        .future-goals li {
+            margin: 0.4rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--gray-200);
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            gap: 0.5rem;
-        }
-        .timeline-step {
-            flex: 1;
-            text-align: center;
-            background: white;
-            border-radius: 60px;
-            padding: 0.75rem 0;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: #2c5a6e;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-            transition: all 0.2s;
-            border: 1px solid #d9ecf5;
-        }
-        .timeline-step i {
-            margin-right: 6px;
-            color: #00AEEF;
-        }
-        .timeline-step.active {
-            background: linear-gradient(105deg, #00AEEF, #00C896);
-            color: white;
-            border: none;
-            box-shadow: 0 8px 18px rgba(0,174,239,0.3);
-        }
-        .timeline-step.active i {
-            color: white;
+            gap: 1rem;
         }
 
-        /* summary section */
-        .summary-flex {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin: 2rem 0;
+        .footer-info p {
+            font-size: 0.8rem;
+            color: var(--gray-600);
         }
-        .summary-card {
-            flex: 1;
-            background: white;
-            border-radius: 28px;
-            padding: 1.8rem;
-            transition: all 0.2s;
-        }
-        .skill-tag {
-            display: inline-block;
-            background: #e3f4fc;
-            color: #0077aa;
-            padding: 0.35rem 1rem;
-            border-radius: 40px;
-            margin: 0.3rem 0.3rem 0 0;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-        footer {
-            background: #0f2e3b;
-            color: #e0f0f8;
-            padding: 2rem 0;
-            margin-top: 3rem;
-            border-radius: 32px 32px 0 0;
-        }
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-        .social-icons a {
-            color: #b5e4ff;
-            font-size: 1.5rem;
-            margin-right: 1rem;
+
+        .social-links a {
+            margin-left: 1.5rem;
+            font-size: 1.2rem;
+            color: var(--gray-500);
             transition: 0.2s;
         }
-        .social-icons a:hover {
-            color: #00C896;
+
+        .social-links a:hover {
+            color: var(--primary);
         }
 
-        /* responsive */
+        /* Responsive */
         @media (max-width: 800px) {
             .container {
-                padding: 0 1.2rem;
+                padding: 0 20px;
+            }
+            .hero-grid {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .intro-text {
+                max-width: 100%;
+            }
+            .contact-row {
+                justify-content: center;
+            }
+            .goal-box {
+                text-align: left;
+            }
+            .nav-container {
+                padding: 0.8rem 20px;
             }
             .nav-links {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                align-items: center;
-                gap: 0.8rem;
-                padding: 1rem 0;
+                gap: 1.2rem;
             }
-            .nav-links.show {
-                display: flex;
-            }
-            .mobile-menu {
-                display: block;
-            }
-            .hero-info h1 {
+            h1 {
                 font-size: 2rem;
             }
+            .avatar-wrapper {
+                width: 180px;
+                height: 180px;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        @media (max-width: 560px) {
             .projects-grid {
                 grid-template-columns: 1fr;
             }
-            .timeline-progress {
-                flex-direction: column;
+            .timeline {
+                padding-left: 1rem;
             }
-            .timeline-step {
-                width: 100%;
+            .timeline-dot {
+                left: -0.9rem;
             }
-        }
-        button, a {
-            cursor: pointer;
-        }
-        i, .fas, .far {
-            pointer-events: none;
-        }
-        hr {
-            margin: 1rem 0;
-            border-color: #cae3ef;
         }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="container nav-container">
-        <div class="logo"><i class="fas fa-x-ray"></i> K.ThuyKhuyen</div>
-        <div class="mobile-menu" id="mobileMenuBtn">
-            <i class="fas fa-bars"></i>
-        </div>
-        <ul class="nav-links" id="navLinks">
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">Nguyễn Thị Thùy Khuyên <span>| Medical Imaging</span></div>
+        <ul class="nav-links">
             <li><a href="#home">Trang chủ</a></li>
             <li><a href="#projects">Dự án</a></li>
             <li><a href="#summary">Tổng kết</a></li>
-            <li><a href="#timeline">Lộ trình</a></li>
         </ul>
     </div>
 </nav>
 
 <main>
-    <!-- HOME / GIỚI THIỆU -->
+    <!-- HOME SECTION -->
     <section id="home" class="hero">
-        <div class="container hero-grid">
-            <div class="hero-avatar">
-                <img src="avatar.jpg" alt="Nguyễn Thị Thùy Khuyên" class="avatar-img" onerror="this.onerror=null; this.src='https://placehold.co/400x400?text=Avatar+Medical'">
-            </div>
-            <div class="hero-info">
-                <div class="badge"><i class="fas fa-graduation-cap"></i> Kỹ thuật Hình ảnh Y học</div>
-                <h1>Nguyễn Thị Thùy Khuyên</h1>
-                <p style="font-size:1.1rem; margin-bottom:1rem;">MSSV: 25100683 | UMP - Đại học Y Dược, ĐHQGHN</p>
-                <div class="contact-row">
-                    <div class="contact-item"><i class="fas fa-envelope"></i> khuyenthuy308@gmail.com</div>
-                    <div class="contact-item"><i class="fas fa-phone-alt"></i> 0911 763 566</div>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">UMP – ĐHQG Hà Nội • Kỹ thuật Hình ảnh Y khoa</div>
+                    <h1>Nguyễn Thị Thùy Khuyên</h1>
+                    <div class="student-id">MSSV: 25100683 | Chuyên ngành Kỹ thuật Hình ảnh</div>
+                    <p class="intro-text">
+                        Sinh viên năm nhất với định hướng nghiên cứu và phát triển giải pháp xử lý ảnh y tế, 
+                        tích hợp trí tuệ nhân tạo vào chẩn đoán hình ảnh. Tư duy phân tích, tỉ mỉ và cam kết 
+                        học thuật chuyên nghiệp.
+                    </p>
+                    <div class="contact-row">
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M22 6L12 13 2 6M22 6v10a2 2 0 01-2 2H4a2 2 0 01-2-2V6l10 7 10-7z"/></svg>
+                            <span>khuyenthuy308@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            <span>0911 763 566</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <span>Hà Nội, Việt Nam</span>
+                        </div>
+                    </div>
+                    <div class="goal-box">
+                        <p><strong>🎯 Mục tiêu học thuật & nghề nghiệp</strong><br>
+                        Phát triển chuyên sâu về kỹ thuật hình ảnh y khoa, ứng dụng AI trong phân tích X-quang, MRI. 
+                        Hướng đến vai trò kỹ sư hình ảnh lâm sàng hoặc chuyên gia nghiên cứu tại bệnh viện/viện công nghệ y sinh.</p>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <p style="font-size: 0.85rem; color: var(--gray-500);">📁 Portfolio: 6 dự án nền tảng – Từ phần cứng đến liêm chính học thuật.</p>
+                    </div>
                 </div>
-                <p style="margin: 1rem 0 0.5rem;">✨ <strong>Mục tiêu học tập:</strong> Phát triển nền tảng vững chắc về xử lý ảnh y khoa, AI trong chẩn đoán hình ảnh, và hệ thống PACS. Hướng tới ứng dụng công nghệ hiện đại nâng cao độ chính xác trong y học.</p>
-                <p><strong>📁 Mục tiêu Portfolio:</strong> Trình bày các dự án học thuật về máy tính, khai thác dữ liệu, AI, hợp tác số, sáng tạo nội dung và liêm chính học thuật, thể hiện năng lực kỹ thuật số toàn diện.</p>
+                <div class="avatar-wrapper">
+                    <img src="image/avatar.jpg" alt="Nguyễn Thị Thùy Khuyên - Medical Imaging Engineer">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- PROJECTS / DỰ ÁN -->
-    <div class="container" id="projects">
-        <div class="section-title"><i class="fas fa-microscope" style="margin-right: 12px;"></i> Dự án học thuật</div>
-        <div class="projects-grid" id="projectsGrid"></div>
-    </div>
-
-    <!-- TIMELINE (học tập từ bài 1 đến 6) -->
-    <div class="container" id="timeline">
-        <div class="section-title"><i class="fas fa-chart-line"></i> Lộ trình phát triển</div>
-        <div class="timeline">
-            <div class="timeline-progress" id="timelineContainer"></div>
-            <p style="margin-top: 1rem; font-size: 0.9rem; text-align: center; color: #3a6f8c;"><i class="fas fa-arrow-down"></i> Hành trình từ nền tảng máy tính đến liêm chính học thuật</p>
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <h2>Dự án chuyên ngành</h2>
+            <p style="margin-bottom: 1.8rem; color: #475569; font-size: 0.9rem;">6 báo cáo học phần theo lộ trình Kỹ thuật Hình ảnh, phản ánh năng lực phân tích và ứng dụng công nghệ.</p>
+            <div class="projects-grid" id="projectsGrid"></div>
         </div>
-    </div>
+    </section>
 
-    <!-- TỔNG KẾT / SUMMARY -->
-    <div class="container" id="summary">
-        <div class="section-title"><i class="fas fa-chalkboard-user"></i> Tổng kết & Phản chiếu</div>
-        <div class="summary-flex">
-            <div class="summary-card glass-card">
-                <h3><i class="fas fa-code-branch"></i> Kỹ năng đạt được</h3>
-                <div style="margin-top: 1rem;">
-                    <span class="skill-tag">Xử lý ảnh y học cơ bản</span>
-                    <span class="skill-tag">Khai thác dữ liệu & SQL</span>
-                    <span class="skill-tag">AI & Machine Learning</span>
-                    <span class="skill-tag">Giao tiếp đa phương thức</span>
-                    <span class="skill-tag">Sáng tạo nội dung số</span>
-                    <span class="skill-tag">Trích dẫn & liêm chính</span>
-                    <span class="skill-tag">Phân tích hệ thống PACS</span>
+    <!-- SUMMARY + TIMELINE SECTION -->
+    <section id="summary" class="summary-section">
+        <div class="container">
+            <h2>Tiến trình & Tổng kết</h2>
+            <!-- Timeline learning journey -->
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>Bài 1 · Máy tính và thiết bị ngoại vi</h4>
+                        <p>Nền tảng phần cứng, tối ưu workstation xử lý ảnh DICOM.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>Bài 2 · Khai thác dữ liệu và thông tin</h4>
+                        <p>Kỹ thuật trích xuất, làm sạch và phân tích metadata ảnh y khoa.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>Bài 3 · Tổng quan về Trí tuệ nhân tạo</h4>
+                        <p>CNN, deep learning trong phân đoạn khối u và phát hiện bất thường.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>Bài 4 · Giao tiếp & hợp tác trong môi trường số</h4>
+                        <p>Quy trình làm việc nhóm từ xa, quản lý dự án cho hệ thống PACS.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>Bài 5 · Sáng tạo nội dung số</h4>
+                        <p>Xây dựng tài liệu trực quan, infographics hướng dẫn chụp cộng hưởng từ.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>Bài 6 · An toàn & liêm chính học thuật</h4>
+                        <p>Bảo mật dữ liệu bệnh nhân, trích dẫn học thuật, đạo đức AI y tế.</p>
+                    </div>
                 </div>
             </div>
-            <div class="summary-card glass-card">
-                <h3><i class="fas fa-brain"></i> Suy ngẫm cá nhân</h3>
-                <p>Qua 6 bài học, em nhận thấy tầm quan trọng của công nghệ số trong lĩnh vực hình ảnh y khoa. Từ hiểu biết về cấu hình máy tính chuyên dụng, xử lý dữ liệu y sinh, đến AI hỗ trợ chẩn đoán — mỗi mô-đun đều giúp em định hình hướng nghiên cứu và thực hành lâm sàng số. Đặc biệt, đạo đức và liêm chính học thuật là nền tảng vững chắc cho một kỹ sư tương lai.</p>
-            </div>
-            <div class="summary-card glass-card">
-                <h3><i class="fas fa-rocket"></i> Mục tiêu tương lai</h3>
-                <p>✔️ Nâng cao chuyên môn về phân tích ảnh MRI/CT bằng Deep Learning.<br>
-                ✔️ Thực tập tại bệnh viện về hệ thống lưu trữ và truyền thông hình ảnh (PACS).<br>
-                ✔️ Phát triển công cụ hỗ trợ bác sĩ chẩn đoán sớm. <br>
-                ✔️ Đóng góp vào cộng đồng nghiên cứu y tế số tại Việt Nam.</p>
+
+            <div class="insight-grid">
+                <div class="card-prof">
+                    <h3>📌 Kỹ năng đạt được</h3>
+                    <div style="margin-top: 1rem;">
+                        <span class="skill-tag">Xử lý ảnh y khoa (DICOM)</span>
+                        <span class="skill-tag">Python & OpenCV</span>
+                        <span class="skill-tag">Khai phá dữ liệu</span>
+                        <span class="skill-tag">AI cơ bản / CNN</span>
+                        <span class="skill-tag">Giao tiếp liên ngành</span>
+                        <span class="skill-tag">Nội dung số y học</span>
+                        <span class="skill-tag">Bảo mật & đạo đức</span>
+                        <span class="skill-tag">Phân tích hệ thống PACS</span>
+                    </div>
+                </div>
+                <div class="card-prof">
+                    <h3>🔍 Suy ngẫm cá nhân</h3>
+                    <p style="color: var(--gray-600); font-size: 0.9rem; margin-bottom: 1rem;">
+                        Hành trình qua 6 dự án giúp tôi thấy rõ sự kết nối giữa hạ tầng máy tính, dữ liệu và AI trong hình ảnh y tế. 
+                        Đặc biệt, bài học về liêm chính học thuật đã định hình tư duy có trách nhiệm khi xử lý dữ liệu bệnh nhân. 
+                        Tôi trân trọng quá trình xây dựng nền tảng vững chắc cho sự nghiệp kỹ sư hình ảnh sau này.
+                    </p>
+                    <div class="future-goals">
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">🚩 Mục tiêu tương lai</h3>
+                        <ul>
+                            <li>Nghiên cứu chuyên sâu về deep learning trong phân loại ảnh X-quang ngực.</li>
+                            <li>Thực tập tại trung tâm chẩn đoán hình ảnh tuyến trung ương.</li>
+                            <li>Phát triển công cụ hỗ trợ bác sĩ đọc phim thông minh.</li>
+                            <li>Học sau đại học chuyên ngành Kỹ thuật Y sinh / AI y tế.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 </main>
 
 <footer>
     <div class="container footer-content">
-        <div>
-            <p><i class="fas fa-id-card"></i> Nguyễn Thị Thùy Khuyên - 25100683</p>
-            <p><i class="fas fa-university"></i> UMP, ĐHQG Hà Nội | Kỹ thuật Hình ảnh Y học</p>
-            <p><i class="fas fa-envelope"></i> khuyenthuy308@gmail.com | 📞 0911763566</p>
+        <div class="footer-info">
+            <p>© 2025 Nguyễn Thị Thùy Khuyên – Kỹ thuật Hình ảnh Y khoa, UMP-VNU</p>
+            <p style="font-size: 0.75rem; margin-top: 4px;">Email liên hệ: khuyenthuy308@gmail.com | Điện thoại: 0911 763 566</p>
         </div>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-google-scholar"></i></a>
-            <a href="#"><i class="fas fa-file-pdf"></i></a>
+        <div class="social-links">
+            <a href="#" aria-label="LinkedIn" style="text-decoration: none;">🔗 LinkedIn</a>
+            <a href="#" aria-label="ResearchGate" style="text-decoration: none;">📄 ResearchGate</a>
         </div>
-    </div>
-    <div class="container" style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; opacity: 0.7;">
-        © 2025 Thùy Khuyên – Portfolio Kỹ thuật Hình ảnh Y học
     </div>
 </footer>
 
 <script>
-    // project data (bai1 -> bai6 as per order)
-    const projectsData = [
-        {
-            id: 1,
-            title: "Máy tính và các thiết bị ngoại vi",
-            objective: "Tìm hiểu cấu trúc máy tính, thiết bị ngoại vi ứng dụng trong y tế (máy in 3D y khoa, màn hình chuyên dụng)",
-            activities: "Lắp ráp máy tính ảo, đánh giá cấu hình tối ưu cho PACS, phân tích chuẩn kết nối.",
-            achievement: "Xây dựng báo cáo so sánh các hệ thống máy trạm xử lý ảnh DICOM.",
-            pdf: "bai1.pdf"
-        },
-        {
-            id: 2,
-            title: "Khai thác dữ liệu và thông tin",
-            objective: "Khai thác cơ sở dữ liệu y khoa, truy vấn và phân tích dữ liệu bệnh nhân.",
-            activities: "Sử dụng SQL và Python để trích xuất dữ liệu hình ảnh, xây dựng dashboard y tế.",
-            achievement: "Phân tích mẫu dữ liệu ảnh X-quang với độ chính xác cải thiện 15%.",
-            pdf: "bai2.pdf"
-        },
-        {
-            id: 3,
-            title: "Tổng quan về Trí tuệ nhân tạo",
-            objective: "Nắm vững nguyên lý AI, học máy và ứng dụng trong phân tích ảnh y khoa.",
-            activities: "Xây dựng mô hình CNN phân loại ảnh X-quang phổi, đánh giá độ nhạy.",
-            achievement: "Đạt độ chính xác 88% trên tập kiểm tra, đề xuất cải tiến augmentation.",
-            pdf: "bai3.pdf"
-        },
-        {
-            id: 4,
-            title: "Giao tiếp và hợp tác trong môi trường số",
-            objective: "Phát triển kỹ năng làm việc nhóm từ xa, sử dụng công cụ số chuyên nghiệp.",
-            activities: "Tham gia dự án giả lập chẩn đoán từ xa, sử dụng Slack, MS Teams, GitHub.",
-            achievement: "Hoàn thành báo cáo hợp tác liên ngành giữa kỹ sư hình ảnh và bác sĩ.",
-            pdf: "bai4.pdf"
-        },
-        {
-            id: 5,
-            title: "Sáng tạo nội dung số",
-            objective: "Tạo video, infographic minh họa quy trình chụp ảnh cộng hưởng từ (MRI).",
-            activities: "Thiết kế poster khoa học, dựng video giải thích nguyên lý tạo ảnh.",
-            achievement: "Sản phẩm được đánh giá cao về mặt trực quan và giáo dục cộng đồng.",
-            pdf: "bai5.pdf"
-        },
-        {
-            id: 6,
-            title: "An toàn và liêm chính học thuật trong môi trường số",
-            objective: "Hiểu rõ quy định bản quyền, đạo văn, an ninh dữ liệu y tế.",
-            activities: "Phân tích tình huống vi phạm dữ liệu bệnh nhân, trích dẫn chuẩn Vancouver.",
-            achievement: "Xây dựng hướng dẫn bảo mật thông tin y tế cho sinh viên.",
-            pdf: "bai6.pdf"
-        }
+    // Project data - 6 projects with professional content
+    const projects = [
+        { id: 1, title: "Máy tính và các thiết bị ngoại vi", shortObj: "Khảo sát cấu hình tối ưu cho trạm xử lý ảnh y khoa.", mainActivities: "Phân tích CPU/GPU, màn hình chuyên dụng, lưu trữ NAS.", keyAchievement: "Đề xuất cấu hình workstation PACS chi phí-hiệu năng.", pdf: "bai1.pdf" },
+        { id: 2, title: "Khai thác dữ liệu và thông tin", shortObj: "Kỹ thuật khai phá metadata ảnh DICOM và cơ sở dữ liệu bệnh án.", mainActivities: "Trích xuất header, tiền xử lý, trực quan hóa phân bố bệnh lý.", keyAchievement: "Xây dựng pipeline phân tích thống kê ảnh X-quang.", pdf: "bai2.pdf" },
+        { id: 3, title: "Tổng quan về Trí tuệ nhân tạo", shortObj: "Ứng dụng CNN trong phân loại và phát hiện bất thường.", mainActivities: "Thực nghiệm mô hình ResNet, đánh giá độ chính xác.", keyAchievement: "Báo cáo so sánh hiệu suất các kiến trúc deep learning.", pdf: "bai3.pdf" },
+        { id: 4, title: "Giao tiếp và hợp tác trong môi trường số", shortObj: "Phương pháp làm việc nhóm từ xa cho dự án hình ảnh y tế.", mainActivities: "Sử dụng Slack, GitHub, Trello mô phỏng quy trình báo cáo.", keyAchievement: "Xây dựng quy trình review chéo dữ liệu hình ảnh.", pdf: "bai4.pdf" },
+        { id: 5, title: "Sáng tạo nội dung số", shortObj: "Thiết kế tài liệu hướng dẫn và infographics chuyên ngành.", mainActivities: "Tạo poster quy trình chụp MRI, video ngắn giải thích kỹ thuật.", keyAchievement: "Bộ nội dung số đạt chứng chỉ khóa học truyền thông y khoa.", pdf: "bai5.pdf" },
+        { id: 6, title: "An toàn và liêm chính học thuật", shortObj: "Đạo đức dữ liệu, tuân thủ HIPAA, trích dẫn học thuật.", mainActivities: "Phân tích tình huống rò rỉ thông tin bệnh nhân.", keyAchievement: "Bài luận về khung bảo mật trong nghiên cứu hình ảnh.", pdf: "bai6.pdf" }
     ];
 
-    // render project cards
-    const projectsGrid = document.getElementById('projectsGrid');
-    function renderProjects() {
-        projectsGrid.innerHTML = '';
-        projectsData.forEach(proj => {
+    const gridContainer = document.getElementById('projectsGrid');
+    if (gridContainer) {
+        projects.forEach(proj => {
             const card = document.createElement('div');
             card.className = 'project-card';
             card.innerHTML = `
                 <div class="project-title">
-                    <i class="fas fa-flask"></i> ${proj.title}
+                    <span>📄</span> ${proj.title}
                 </div>
-                <div class="project-meta"><i class="fas fa-bullseye"></i> Mục tiêu ngắn</div>
-                <p style="font-weight:500;">🎯 ${proj.objective}</p>
-                <div style="margin: 12px 0 6px;"><i class="fas fa-tasks"></i> <strong>Hoạt động chính:</strong> ${proj.activities}</div>
-                <div><i class="fas fa-trophy" style="color:#00C896;"></i> <strong>Thành tựu:</strong> ${proj.achievement}</div>
-                <a href="${proj.pdf}" target="_blank" class="btn-pdf"><i class="fas fa-file-pdf"></i> Xem PDF</a>
+                <div class="project-meta">BÁO CÁO CHUYÊN ĐỀ</div>
+                <div class="project-desc"><strong>Mục tiêu:</strong> ${proj.shortObj}</div>
+                <div class="project-desc"><strong>Hoạt động chính:</strong> ${proj.mainActivities}</div>
+                <div class="project-desc"><strong>Kết quả nổi bật:</strong> ${proj.keyAchievement}</div>
+                <a href="${proj.pdf}" target="_blank" class="btn-pdf">📎 Xem PDF →</a>
             `;
-            projectsGrid.appendChild(card);
+            gridContainer.appendChild(card);
         });
     }
 
-    // timeline dynamic from bài 1 -> bài 6
-    function renderTimeline() {
-        const timelineContainer = document.getElementById('timelineContainer');
-        if(!timelineContainer) return;
-        timelineContainer.innerHTML = '';
-        const titles = [
-            "Bài 1: Máy tính & TB ngoại vi",
-            "Bài 2: Khai thác dữ liệu",
-            "Bài 3: Tổng quan AI",
-            "Bài 4: Giao tiếp & Hợp tác số",
-            "Bài 5: Sáng tạo nội dung số",
-            "Bài 6: An toàn & Liêm chính"
-        ];
-        titles.forEach((title, idx) => {
-            const stepDiv = document.createElement('div');
-            stepDiv.className = 'timeline-step';
-            stepDiv.innerHTML = `<i class="fas fa-graduation-cap"></i> ${title}`;
-            // highlight all as "completed" – thể hiện quá trình học từ 1-6 (active effect)
-            // we can add animation or simply mark all as active to show full journey
-            stepDiv.classList.add('active'); 
-            timelineContainer.appendChild(stepDiv);
-        });
-    }
-
-    // smooth scroll and mobile menu
-    function setupNavigation() {
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        if(mobileBtn) {
-            mobileBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('show');
-            });
-        }
-        // close menu after click link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                if(navLinks.classList.contains('show')) navLinks.classList.remove('show');
-                const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                if(targetSection) {
-                    e.preventDefault();
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
-                } else if(link.getAttribute('href') === '#') {
-                    // nothing
-                } else {
-                    // default hash fallback
-                    window.location.hash = link.getAttribute('href');
-                }
-            });
-        });
-        // additional: if home link
-        const homeLink = document.querySelector('.nav-links a[href="#home"]');
-        if(homeLink) {
-            homeLink.addEventListener('click', (e) => {
+    // smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = this.getAttribute('href');
+            if (target === "#" || !target) return;
+            const element = document.querySelector(target);
+            if (element) {
                 e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-    }
-
-    // medical icon accent: add hover effect also for all pdf buttons to open externally
-    function handlePDFOpenPrevent() {
-        // all external PDF links are correctly target="_blank" already.
-        // just ensure relative paths work (bai1.pdf etc)
-    }
-
-    // add some glowing effect for hero
-    function injectMedicalDecorations() {
-        // Optional: add floating decorations (just for aesthetic, but not necessary)
-        const heroDiv = document.querySelector('.hero');
-        if(heroDiv && !document.querySelector('.medical-icon-bg')) {
-            // nothing invasive
-        }
-    }
-    
-    // Smooth initial load, check for hash redirect
-    function checkHashOnLoad() {
-        if(window.location.hash) {
-            const id = window.location.hash.substring(1);
-            const el = document.getElementById(id);
-            if(el) {
-                setTimeout(() => {
-                    el.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-        }
-    }
+        });
+    });
 
-    // since avatar placeholder uses local avatar.jpg, we also add fallback if not exists (just info)
-    // optional image error handler
-    const avatarImg = document.querySelector('.avatar-img');
-    if(avatarImg) {
-        avatarImg.onerror = function() {
-            this.src = 'https://placehold.co/400x400?text=Medical+Imaging+Student';
-            this.style.objectFit = 'cover';
-        };
-    }
-
-    // init
-    function init() {
-        renderProjects();
-        renderTimeline();
-        setupNavigation();
-        checkHashOnLoad();
-        // add timeline event: show each step as completed journey
-        // also make sure PDFs are accessible (no backend needed, just local file references)
-        console.log("Portfolio ready – Y hình ảnh y học");
-    }
-    init();
+    // Subtle fade-in on scroll for cards (professional)
+    const fadeElements = document.querySelectorAll('.project-card, .card-prof, .timeline-item');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+            }
+        });
+    }, { threshold: 0.05 });
+    fadeElements.forEach(el => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(12px)";
+        el.style.transition = "opacity 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.4s ease";
+        observer.observe(el);
+    });
+    // initial trigger for visible elements
+    window.dispatchEvent(new Event('scroll'));
 </script>
 </body>
 </html>
